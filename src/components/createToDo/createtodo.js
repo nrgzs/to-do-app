@@ -1,8 +1,11 @@
-import { useRef, useState } from 'react';
+import { ContextTodos } from '@/pages/contextTodos';
+import { useContext, useRef, useState } from 'react';
 
 export default function Createtodo() {
-  const [todos, settodos] = useState([]);
+  const [todos, settodos] = useContext(ContextTodos);
+
   const [tasks, settasks] = useState([]);
+
   const nameinpt = useRef();
   const checkinpt = useRef();
   const taskinpt = useRef();
