@@ -1,8 +1,8 @@
 import { ContextTodos } from '@/pages/contextTodos';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useReducer, useRef, useState } from 'react';
 
 export default function Createtodo() {
-  const [todos, settodos] = useContext(ContextTodos);
+  const [todosreducer, dispatch] = useContext(ContextTodos);
 
   const [tasks, settasks] = useState([]);
 
@@ -15,19 +15,20 @@ export default function Createtodo() {
       name: nameinpt.current.value,
       ishighlighted: checkinpt.current.checked,
       tasks: tasks,
+      isDone: false,
     };
-    settodos((prevtodos) => {
-      return [...prevtodos, todo];
-    });
+
+    dispatch({ type: 'add', todo: todo });
   }
 
   function addTask() {
-    settasks((prevtasks) => {
-      return [...prevtasks, taskinpt.current.value];
+    dispatch({ type: 'addTask', task: tasks });
+    settasks((prev) => {
+      return [...prev, taskinpt.current.value];
     });
   }
 
-  console.log(todos);
+  console.log(todosreducer);
   return (
     <div>
       <h2>Create New Todo</h2>
@@ -39,7 +40,11 @@ export default function Createtodo() {
       <div>
         <input type="text" placeholder="enter your task" ref={taskinpt}></input>
         <button onClick={addTask}>add task</button>
-        <div>your tasks{tasks}</div>
+        <div>
+          {todosreducer.map((todo) => {
+            return <p key={todo.name}>{JSON.stringify(todo.tasks)}</p>;
+          })}
+        </div>
       </div>
       <button onClick={add}>create todo</button>
     </div>
