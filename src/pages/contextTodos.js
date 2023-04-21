@@ -15,13 +15,12 @@ export default function ContextComponent({ children }) {
 
       case 'remove':
         const newtodos = [];
-        return state.map((todo) => {
+        state.map((todo) => {
           if (todo.name != action.todo.name) {
-            return todo;
-          } else {
-            return 'deleted';
+            newtodos.push(todo);
           }
         });
+        return newtodos.map((todo) => todo);
 
       default:
         return state;
