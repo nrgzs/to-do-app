@@ -11,6 +11,10 @@ export default function Todos() {
     dispatch({ type: 'remove', todo: todo });
   }
 
+  function doneTodo(todo) {
+    dispatch({ type: 'done', todo: todo });
+  }
+
   /*  function doneTodo(id) {
     const newtodos = [];
     for (const todo of todos) {
@@ -74,7 +78,7 @@ export default function Todos() {
                 delete
               </button>
               <button>edit</button>
-              {/*  <button onClick={() => doneTodo(todo.name)}>done</button> */}
+              {<button onClick={() => doneTodo(todo.name)}>done</button>}
             </li>
           );
         })}

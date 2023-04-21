@@ -22,6 +22,19 @@ export default function ContextComponent({ children }) {
         });
         return newtodos.map((todo) => todo);
 
+      case 'done':
+        const donetodos = [];
+        state.map((todo) => {
+          if (todo.name != action.todo.name) {
+            const newtodo = {
+              ...todo,
+              isDone: true,
+            };
+            donetodos.push(newtodo);
+          }
+        });
+        return donetodos.map((todo) => todo);
+
       default:
         return state;
     }
