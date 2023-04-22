@@ -4,18 +4,23 @@ export const ContextTodos = createContext();
 
 export default function ContextComponent({ children }) {
   function reducer(state, action) {
+    const donetodos = [];
+    const initialstate = [...state];
+    const filterdoneTodos = [];
+    const filterundoneTodos = [];
+
     switch (action.type) {
       case 'add':
-        return [...state, action.todo];
+        return [...initialstate, action.todo];
 
       case 'addtask':
-        return state.map((todo) => {
+        return initialstate.map((todo) => {
           return { ...todo, tasks: action.task };
         });
 
       case 'remove':
         const newtodos = [];
-        state.map((todo) => {
+        initialstate.map((todo) => {
           if (todo.name != action.todo.name) {
             newtodos.push(todo);
           }
@@ -23,20 +28,58 @@ export default function ContextComponent({ children }) {
         return newtodos.map((todo) => todo);
 
       case 'done':
-        const donetodos = [];
-        state.map((todo) => {
-          if (todo.name != action.todo.name) {
+        initialstate.map((todo) => {
+          if (todo.name == action.todo.name) {
             const newtodo = {
               ...todo,
               isDone: true,
             };
             donetodos.push(newtodo);
+          } else {
+            donetodos.push(todo);
           }
         });
         return donetodos.map((todo) => todo);
 
+      /* case 'filter':
+        donetodos.map((todo) => {
+          if (todo.isDone) {
+            filterdoneTodos.push(todo);
+          } else {
+            filterundoneTodos.push(todo);
+          }
+        });
+
+        if (action.id == 'done') {
+          return [...filterdoneTodos];
+        } else if (action.id == 'undone') {
+          return [...filterundoneTodos];
+        } else if (action.id == 'all') {
+          return [...initialstate];
+        } */
+      case 'filterdone':
+        initialstate.map((todo) => {
+          if (todo.isDone) {
+            filterdoneTodos.push(todo);
+          }
+        });
+        return [...filterdoneTodos];
+
+      case 'filterundone':
+        initialstate.map((todo) => {
+          if (!todo.isDone) {
+            filterundoneTodos.push(todo);
+          }
+        });
+        return [...filterundoneTodos];
+
+      case 'filterall':
+        return initialstate.map((todo) => {
+          return todo;
+        });
+
       default:
-        return state;
+        return initialstate;
     }
   }
 

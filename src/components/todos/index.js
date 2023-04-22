@@ -15,54 +15,29 @@ export default function Todos() {
     dispatch({ type: 'done', todo: todo });
   }
 
-  /*  function doneTodo(id) {
-    const newtodos = [];
-    for (const todo of todos) {
-      if (todo.name == id) {
-        const newtodo = {
-          ...todo,
-          isDone: true,
-        };
-        newtodos.push(newtodo);
-
-        settodos(newtodos);
-      }
-    }
-  }
+  /* function filter(id) {
+    dispatch({ type: 'filter', id: id });
+  } */
 
   function filterDone() {
-    const doneTodos = [];
-
-    for (const todo of todos) {
-      if (todo.isDone) {
-        doneTodos.push(todo);
-        setdoneTodos(doneTodos);
-      }
-    }
+    dispatch({ type: 'filterdone' });
   }
 
   function filterUndone() {
-    const unDoneTodos = [];
-
-    for (const todo of todos) {
-      if (todo.isDone) {
-        unDoneTodos.push(todo);
-        setunDoneTodos(unDoneTodos);
-      }
-    }
+    dispatch({ type: 'filterundone' });
   }
 
   function filterAll() {
-    return todos;
+    dispatch({ type: 'filterall' });
   }
- */
+
   console.log(todosreducer);
 
   return (
     <div>
-      {/*   <button onClick={filterDone}>Done</button>
+      <button onClick={filterDone}>Done</button>
       <button onClick={filterUndone}>Undone</button>
-      <button onClick={filterAll}>All</button> */}
+      <button onClick={filterAll}>All</button>
       <ul>
         {todosreducer.map((todo) => {
           return (
@@ -78,7 +53,7 @@ export default function Todos() {
                 delete
               </button>
               <button>edit</button>
-              {<button onClick={() => doneTodo(todo.name)}>done</button>}
+              {<button onClick={() => doneTodo(todo)}>done</button>}
             </li>
           );
         })}
