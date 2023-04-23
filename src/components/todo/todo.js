@@ -1,7 +1,7 @@
 import { useContext, useEffect, useReducer, useState } from 'react';
 import { ContextTodos } from '@/pages/contextTodos';
 
-export default function Todo({ todo }) {
+export default function Todo({ todo, filtered }) {
   const [todosreducer, dispatch] = useContext(ContextTodos);
   function removeTodo(todo) {
     console.log(todo);

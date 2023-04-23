@@ -4,18 +4,37 @@ import Todo from '../todo/todo';
 
 export default function Todos() {
   const [todosreducer, dispatch] = useContext(ContextTodos);
-  const [filtered, setFiltered] = useState(false);
+
+  const filteredObj = {
+    filtered: false,
+    done: false,
+    undone: false,
+  };
+
+  const [filtered, setFiltered] = useState({
+    filtered: false,
+    done: false,
+    undone: false,
+  });
 
   function filterDone() {
-    setFiltered(true);
+    setFiltered({
+      filtered: true,
+      done: true,
+      undone: false,
+    });
   }
 
   function filterUndone() {
-    setFiltered(true);
+    setFiltered({
+      filtered: true,
+      done: false,
+      undone: true,
+    });
   }
 
   function filterAll() {
-    setFiltered(false);
+    setFiltered({ filtered: false, done: false, undone: false });
   }
 
   console.log(todosreducer);
@@ -27,7 +46,17 @@ export default function Todos() {
       <button onClick={filterAll}>All</button>
       <ul>
         {todosreducer.map((todo) => {
-          return <Todo key={todo.name} todo={todo} />;
+          if (filtered.done) {
+            if (todo.isDone) {
+              return <Todo key={todo.name} todo={todo} filter={filtered} />;
+            }
+          } else if (filtered.undone) {
+            if (!todo.isDone) {
+              return <Todo key={todo.name} todo={todo} filter={filtered} />;
+            }
+          } else {
+            return <Todo key={todo.name} todo={todo} filter={filtered} />;
+          }
         })}
       </ul>
     </div>
