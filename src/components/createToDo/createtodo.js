@@ -16,6 +16,7 @@ export default function Createtodo() {
       ishighlighted: checkinpt.current.checked,
       tasks: tasks,
       isDone: false,
+      isFiltered: false,
     };
 
     dispatch({ type: 'add', todo: todo });

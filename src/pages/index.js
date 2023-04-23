@@ -6,6 +6,9 @@ import Createtodo from '@/components/createToDo/createtodo';
 import Todos from '@/components/todos';
 import ContextComponent from './contextTodos';
 
+import Searchbox from '@/components/search/search';
+import Todo from '@/components/todo/todo';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
@@ -19,6 +22,7 @@ export default function Home() {
       </Head>
       <ContextComponent>
         <Createtodo />
+        <Searchbox />
         <Todos />
       </ContextComponent>
     </>

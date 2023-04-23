@@ -6,8 +6,6 @@ export default function ContextComponent({ children }) {
   function reducer(state, action) {
     const donetodos = [];
     const initialstate = [...state];
-    const filterdoneTodos = [];
-    const filterundoneTodos = [];
 
     switch (action.type) {
       case 'add':
@@ -25,6 +23,7 @@ export default function ContextComponent({ children }) {
             newtodos.push(todo);
           }
         });
+
         return newtodos.map((todo) => todo);
 
       case 'done':
@@ -39,6 +38,7 @@ export default function ContextComponent({ children }) {
             donetodos.push(todo);
           }
         });
+
         return donetodos.map((todo) => todo);
 
       /* case 'filter':
@@ -57,26 +57,6 @@ export default function ContextComponent({ children }) {
         } else if (action.id == 'all') {
           return [...initialstate];
         } */
-      case 'filterdone':
-        initialstate.map((todo) => {
-          if (todo.isDone) {
-            filterdoneTodos.push(todo);
-          }
-        });
-        return [...filterdoneTodos];
-
-      case 'filterundone':
-        initialstate.map((todo) => {
-          if (!todo.isDone) {
-            filterundoneTodos.push(todo);
-          }
-        });
-        return [...filterundoneTodos];
-
-      case 'filterall':
-        return initialstate.map((todo) => {
-          return todo;
-        });
 
       default:
         return initialstate;
