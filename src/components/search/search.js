@@ -7,20 +7,28 @@ export default function Searchbox() {
   const [searchlist, setSearchList] = useState([]);
 
   function search() {
-    const value = searchinpt.current.value;
+    const value = [];
+    value.push(searchinpt.current.value);
+    console.log(value);
+    const found = [];
+
     todosreducer.map((todo) => {
-      if (value == todo.name) {
-        setSearchList([...searchlist, todo.name]);
+      if (todo.name.match(value)) {
+        found.push(todo);
       }
+      setSearchList(found);
     });
-    return;
+
+    if (value.includes('')) {
+      setSearchList([]);
+    }
   }
   return (
     <div>
       <p>search for</p>
-      <input type="text" ref={searchinpt}></input>
-      <button onClick={search}>search</button>
-      <div>{searchlist.map((item) => item)}</div>
+      <input type="text" ref={searchinpt} onChange={search}></input>
+      <button>search</button>
+      <div>{searchlist.map((i) => JSON.stringify(i))}</div>
     </div>
   );
 }

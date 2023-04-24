@@ -20,10 +20,10 @@ export default function Createtodo() {
     };
 
     dispatch({ type: 'add', todo: todo });
+    settasks([]);
   }
 
   function addTask() {
-    dispatch({ type: 'addTask', task: tasks });
     settasks((prev) => {
       return [...prev, taskinpt.current.value];
     });
@@ -40,12 +40,8 @@ export default function Createtodo() {
       </div>
       <div>
         <input type="text" placeholder="enter your task" ref={taskinpt}></input>
-        <button onClick={addTask}>add task</button>
-        <div>
-          {todosreducer.map((todo) => {
-            return <p key={todo.name}>{JSON.stringify(todo.tasks)}</p>;
-          })}
-        </div>
+        <button onClick={() => addTask()}>add task</button>
+        <div>{tasks}</div>
       </div>
       <button onClick={add}>create todo</button>
     </div>

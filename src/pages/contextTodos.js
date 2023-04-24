@@ -11,11 +11,6 @@ export default function ContextComponent({ children }) {
       case 'add':
         return [...initialstate, action.todo];
 
-      case 'addtask':
-        return initialstate.map((todo) => {
-          return { ...todo, tasks: action.task };
-        });
-
       case 'remove':
         const newtodos = [];
         initialstate.map((todo) => {
