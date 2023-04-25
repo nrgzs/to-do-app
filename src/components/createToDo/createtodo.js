@@ -1,5 +1,6 @@
 import { ContextTodos } from '@/pages/contextTodos';
 import { useContext, useReducer, useRef, useState } from 'react';
+import styles from './style.module.css';
 
 export default function Createtodo() {
   const [todosreducer, dispatch] = useContext(ContextTodos);
@@ -31,19 +32,44 @@ export default function Createtodo() {
 
   console.log(todosreducer);
   return (
-    <div>
-      <h2>Create New Todo</h2>
-      <div>
-        <input type="text" placeholder="name" ref={nameinpt}></input>
-        <label>hightlight todo</label>
-        <input type="checkbox" ref={checkinpt}></input>
+    <div className={styles.createTodo}>
+      <h2 className={styles.titleTxt}>Create New Todo</h2>
+      <div className={styles.title}>
+        <input
+          type="text"
+          placeholder="name"
+          ref={nameinpt}
+          className={styles.nameInp}
+        ></input>
+        <div className={styles.highlight}>
+          <label className={styles.highlightTxt}>hightlight todo</label>
+
+          <input
+            type="checkbox"
+            ref={checkinpt}
+            className={styles.highlightCBox}
+          ></input>
+        </div>
       </div>
-      <div>
-        <input type="text" placeholder="enter your task" ref={taskinpt}></input>
-        <button onClick={() => addTask()}>add task</button>
-        <div>{tasks}</div>
+      <div className={styles.tasks}>
+        <input
+          type="text"
+          placeholder="enter your task"
+          ref={taskinpt}
+          className={styles.taskInp}
+        ></input>
+        <button onClick={() => addTask()} className={styles.taskBtn}>
+          add task
+        </button>
+        <div className={styles.tasksContainer}>
+          {tasks.map((t) => (
+            <p>{t}</p>
+          ))}
+        </div>
       </div>
-      <button onClick={add}>create todo</button>
+      <button onClick={add} className={styles.createBtn}>
+        create todo
+      </button>
     </div>
   );
 }

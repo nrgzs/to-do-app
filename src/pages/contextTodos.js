@@ -36,23 +36,6 @@ export default function ContextComponent({ children }) {
 
         return donetodos.map((todo) => todo);
 
-      /* case 'filter':
-        donetodos.map((todo) => {
-          if (todo.isDone) {
-            filterdoneTodos.push(todo);
-          } else {
-            filterundoneTodos.push(todo);
-          }
-        });
-
-        if (action.id == 'done') {
-          return [...filterdoneTodos];
-        } else if (action.id == 'undone') {
-          return [...filterundoneTodos];
-        } else if (action.id == 'all') {
-          return [...initialstate];
-        } */
-
       default:
         return initialstate;
     }

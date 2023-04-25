@@ -9,7 +9,7 @@ export default function Searchbox() {
   function search() {
     const value = [];
     value.push(searchinpt.current.value);
-    console.log(value);
+
     const found = [];
 
     todosreducer.map((todo) => {
