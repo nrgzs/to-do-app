@@ -4,3 +4,12 @@ body {
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
 }
+
+@media only screen and (min-width: 991px) {
+  .main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 90vh;
+  }
+}

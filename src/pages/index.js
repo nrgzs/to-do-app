@@ -20,11 +20,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ContextComponent>
-        <Createtodo />
-        <Searchbox />
-        <Todos />
-      </ContextComponent>
+      <div className="main">
+        <ContextComponent>
+          <Createtodo />
+          <Searchbox />
+          <Todos />
+        </ContextComponent>
+      </div>
     </>
   );
 }
