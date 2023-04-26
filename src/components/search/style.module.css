@@ -1,0 +1,62 @@
+/* Name: Verdigris
+Hex: #41B6B8
+
+LIGHT SEA GREEN	
+Name: Light Sea Green
+Hex: #1F9BA5
+
+MAXIMUM YELLOW RED	
+Name: Maximum Yellow Red
+Hex: #FABE4F
+
+CRAYOLA'S DANDELION	
+Name: Crayola's Dandelion
+Hex: #FAD874*/
+
+.searchbox {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #fabe4f;
+  padding: 20px;
+  margin: 20px 30px;
+}
+
+.input {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #1f9ba5;
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: #1f9ba5;
+  border-radius: 10px;
+  padding: 5px;
+
+  color: #fff;
+  font-weight: bolder;
+  font-size: 14px;
+}
+
+.button {
+  background-color: #1f9ba5;
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 20px;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 14px;
+}
+
+.button:hover {
+  background-color: #fabe4f;
+}
+
+.button:active {
+  background-color: #fad874;
+}
+
+.item {
+  border-bottom: 1px solid #fabe4f;
+  color: #1f9ba5;
+}

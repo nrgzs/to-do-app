@@ -1,6 +1,7 @@
 import { useContext, useEffect, useReducer, useState } from 'react';
 import { ContextTodos } from '@/pages/contextTodos';
 import Todo from '../todo/todo';
+import styles from './style.module.css';
 
 export default function Todos() {
   const [todosreducer, dispatch] = useContext(ContextTodos);
@@ -40,11 +41,17 @@ export default function Todos() {
   console.log(todosreducer);
 
   return (
-    <div>
-      <button onClick={filterDone}>Done</button>
-      <button onClick={filterUndone}>Undone</button>
-      <button onClick={filterAll}>All</button>
-      <ul>
+    <div className={styles.btnbox}>
+      <button onClick={filterDone} className={styles.btn}>
+        Done
+      </button>
+      <button onClick={filterUndone} className={styles.btn}>
+        Undone
+      </button>
+      <button onClick={filterAll} className={styles.btn}>
+        All
+      </button>
+      <ul className={styles.todolist}>
         {todosreducer.map((todo) => {
           if (filtered.done) {
             if (todo.isDone) {

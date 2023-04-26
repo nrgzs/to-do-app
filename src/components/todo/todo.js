@@ -1,5 +1,6 @@
 import { useContext, useEffect, useReducer, useState } from 'react';
 import { ContextTodos } from '@/pages/contextTodos';
+import { styles } from './style.module.css';
 
 export default function Todo({ todo, filtered }) {
   const [todosreducer, dispatch] = useContext(ContextTodos);
@@ -14,9 +15,12 @@ export default function Todo({ todo, filtered }) {
 
   return (
     <li key={Math.random()}>
-      {todo.name}
-      {JSON.stringify(todo.ishighlighted)}
-      {JSON.stringify(todo.tasks)}
+      <h4> {todo.name}</h4>
+
+      {todo.tasks.map((t) => (
+        <p>{t}</p>
+      ))}
+
       <button
         onClick={() => {
           removeTodo(todo);
@@ -25,29 +29,8 @@ export default function Todo({ todo, filtered }) {
         delete
       </button>
       <button>edit</button>
-      {<button onClick={() => doneTodo(todo)}>done</button>}
+
+      <button onClick={() => doneTodo(todo)}>done</button>
     </li>
   );
 }
-
-/* function FilteredList() {
-  todosreducer.map((todo) => {
-    return (
-      <li key={Math.random()}>
-        {todo.name}
-        {JSON.stringify(todo.ishighlighted)}
-        {JSON.stringify(todo.tasks)}
-        <button
-          onClick={() => {
-            removeTodo(todo);
-          }}
-        >
-          delete
-        </button>
-        <button>edit</button>
-        {<button onClick={() => doneTodo(todo)}>done</button>}
-      </li>
-    );
-  });
-}
- */
